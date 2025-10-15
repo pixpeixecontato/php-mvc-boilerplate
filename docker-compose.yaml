@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./ # Path to your Dockerfile directory
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html # Mount your application code
+    depends_on:
+      - db
+    environment:
+      # Optional: Configure PHP settings if needed
+      PHP_INI_DIR: /usr/local/etc/php
+      # Example: Increase memory limit
+      PHP_MEMORY_LIMIT: 512M
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: my_database
+    volumes:
+      - db_data:/var/lib/mysql # Persistent storage for database data
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80" # Access phpMyAdmin on port 8080
+    environment:
+      PMA_HOST: db # Hostname of the MySQL service
+    depends_on:
+      - db
+
+volumes:
+  db_data: # Define the named volume for database persistence
