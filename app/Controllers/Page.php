@@ -6,7 +6,7 @@ use App\View\View;
 
 class Page
 {
-    public function page(string $viewPath, array $vars = [], string $title = ""):string
+    public static function page(string $viewPath, array $vars = [], string $title = ""):string
     {
         $content = View::render($viewPath, $vars);
         return View::render("pages/page", [

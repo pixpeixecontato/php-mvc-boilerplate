@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class Login extends Page
 {
-    public function index()
+    public static function index()
     {
         return parent::page("pages/login");
     }

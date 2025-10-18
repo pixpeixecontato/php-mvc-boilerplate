@@ -5,12 +5,8 @@ require_once __DIR__ . "/vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-use App\Controllers\Login;
+require_once __DIR__ . "/Routes/web.php";
 
-$login = new Login();
-echo $login->index();
-// if ($userHasSession) {
-    
-// } else {
-    
-// }
+
+
+

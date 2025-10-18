@@ -1,5 +1,8 @@
-RewriteEngine on
+RewriteEngine On
 
-# Regra para o index
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} .+/$
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php [QSA,NC]
+RewriteRule ^(.*)$ index.php [QSA,NC,L]
